@@ -1,44 +1,38 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 
 export interface CarouselItem {
-  id: string | number;
+  id: string;
   imgSrc: string;
   title: string;
-  description?: string;
-  url?: string;
-  actions?: Array<{
+  description: string;
+  actions?: {
     label: string;
     url: string;
-    variant?: "primary" | "secondary" | "outline";
-  }>;
+    variant: "primary" | "secondary";
+  }[];
 }
 
-export interface CarouselProps {
+interface CarouselProps {
   items: CarouselItem[];
-  autoPlay?: boolean;
-  interval?: number;
-  showDots?: boolean;
   className?: string;
+  autoPlayInterval?: number;
 }
 
-export const Carousel: React.FC<CarouselProps> = ({
+export function Carousel({
   items,
-  autoPlay = true,
-  interval = 5000,
-  showDots = true,
   className = "",
-}) => {
+  autoPlayInterval = 5000,
+}: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === items.length - 1 ? 0 : prevIndex + 1
-    );
-  }, [items.length]);
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+  };
 
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? items.length - 1 : prevIndex - 1
+  const goToPrev = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + items.length) % items.length
     );
   };
 
@@ -47,67 +41,69 @@ export const Carousel: React.FC<CarouselProps> = ({
   };
 
   useEffect(() => {
-    if (!autoPlay) return;
+    let interval: NodeJS.Timeout;
 
-    const intervalId = setInterval(() => {
-      nextSlide();
-    }, interval);
+    if (isAutoPlaying) {
+      interval = setInterval(goToNext, autoPlayInterval);
+    }
 
-    return () => clearInterval(intervalId);
-  }, [autoPlay, interval, nextSlide]);
-
-  if (!items.length) return null;
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [isAutoPlaying, autoPlayInterval]);
 
   return (
-    <div className={`relative w-full overflow-hidden ${className}`}>
+    <div
+      className={`relative overflow-hidden ${className}`}
+      onMouseEnter={() => setIsAutoPlaying(false)}
+      onMouseLeave={() => setIsAutoPlaying(true)}
+    >
       <div
-        className="flex transition-transform duration-500 ease-out"
+        className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {items.map((item) => (
-          <div key={item.id} className="relative min-w-full">
-            <img
-              src={item.imgSrc}
-              alt={item.title}
-              className="h-[400px] w-full object-cover"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 p-4 text-center text-white">
-              <h2 className="mb-2 text-3xl font-bold">{item.title}</h2>
-              {item.description && (
-                <p className="mb-4 max-w-md text-lg">{item.description}</p>
-              )}
-              {item.actions && item.actions.length > 0 && (
-                <div className="mt-4 flex space-x-4">
-                  {item.actions.map((action, i) => {
-                    const variantStyles = {
-                      primary: "bg-blue-600 text-white hover:bg-blue-700",
-                      secondary: "bg-white text-gray-900 hover:bg-gray-100",
-                      outline:
-                        "border border-white text-white hover:bg-white/10",
-                    };
-                    return (
-                      <a
-                        key={i}
-                        href={action.url}
-                        className={`inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors ${
-                          variantStyles[action.variant || "primary"]
-                        }`}
-                      >
-                        {action.label}
-                      </a>
-                    );
-                  })}
+          <div key={item.id} className="w-full flex-shrink-0">
+            <div className="relative h-[400px]">
+              <img
+                src={item.imgSrc}
+                alt={item.title}
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40">
+                <div className="flex h-full flex-col items-center justify-center px-4 text-center text-white">
+                  <h2 className="mb-4 text-4xl font-bold">{item.title}</h2>
+                  <p className="mb-6 max-w-lg text-lg">{item.description}</p>
+                  {item.actions && (
+                    <div className="flex gap-4">
+                      {item.actions.map((action, index) => (
+                        <a
+                          key={index}
+                          href={action.url}
+                          className={`rounded-md px-6 py-2 font-medium transition-colors ${
+                            action.variant === "primary"
+                              ? "bg-white text-black hover:bg-gray-100"
+                              : "border border-white text-white hover:bg-white/10"
+                          }`}
+                        >
+                          {action.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           </div>
         ))}
       </div>
 
+      {/* Navigation Buttons */}
       <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/30 p-2 text-white transition-all hover:bg-black/50"
-        aria-label="Previous slide"
+        onClick={goToPrev}
+        className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 text-gray-800 shadow-md hover:bg-white"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -124,11 +120,9 @@ export const Carousel: React.FC<CarouselProps> = ({
           />
         </svg>
       </button>
-
       <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/30 p-2 text-white transition-all hover:bg-black/50"
-        aria-label="Next slide"
+        onClick={goToNext}
+        className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 text-gray-800 shadow-md hover:bg-white"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -146,20 +140,18 @@ export const Carousel: React.FC<CarouselProps> = ({
         </svg>
       </button>
 
-      {showDots && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 space-x-2">
-          {items.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`inline-block h-2 w-2 rounded-full transition-colors ${
-                index === currentIndex ? "bg-white" : "bg-white/50"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
+      {/* Navigation Dots */}
+      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+        {items.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`h-2 w-2 rounded-full transition-all ${
+              index === currentIndex ? "bg-white w-4" : "bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
-};
+}
