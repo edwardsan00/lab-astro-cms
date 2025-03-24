@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Página no encontrada | AstroShop" description="La página que buscas no existe">
+  <div class="container mx-auto px-4 py-16 text-center">
+    <div class="mb-8">
+      <h1 class="text-9xl font-bold text-blue-600">404</h1>
+      <h2 class="mb-8 text-3xl font-bold text-gray-900">Página no encontrada</h2>
+      <p class="mx-auto mb-8 max-w-2xl text-lg text-gray-600">
+        Lo sentimos, la página que buscas no existe o ha sido movida.
+      </p>
+      <div class="flex justify-center space-x-4">
+        <a
+          href="/"
+          class="rounded-md bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Volver al inicio
+        </a>
+        <a
+          href="/ofertas"
+          class="rounded-md border border-gray-300 bg-white px-6 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Ver ofertas
+        </a>
+      </div>
+    </div>
+
+    <div class="mx-auto mt-16 max-w-2xl rounded-lg bg-gray-50 p-8">
+      <h3 class="mb-4 text-xl font-semibold text-gray-900">¿No encuentras lo que buscas?</h3>
+      <p class="mb-6 text-gray-600">
+        Prueba a buscar en nuestras categorías populares o contacta con nosotros si necesitas ayuda.
+      </p>
+      
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        <a
+          href="/mujer"
+          class="rounded-md border border-gray-200 bg-white p-4 text-center font-medium text-gray-800 transition-all hover:border-blue-200 hover:shadow-sm"
+        >
+          Mujer
+        </a>
+        <a
+          href="/hombre"
+          class="rounded-md border border-gray-200 bg-white p-4 text-center font-medium text-gray-800 transition-all hover:border-blue-200 hover:shadow-sm"
+        >
+          Hombre
+        </a>
+        <a
+          href="/deporte"
+          class="rounded-md border border-gray-200 bg-white p-4 text-center font-medium text-gray-800 transition-all hover:border-blue-200 hover:shadow-sm"
+        >
+          Deporte
+        </a>
+        <a
+          href="/accesorios"
+          class="rounded-md border border-gray-200 bg-white p-4 text-center font-medium text-gray-800 transition-all hover:border-blue-200 hover:shadow-sm"
+        >
+          Accesorios
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout> 

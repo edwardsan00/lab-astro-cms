@@ -1,0 +1,80 @@
+---
+import Layout from './Layout.astro';
+import { type Category } from '../mocks/categories';
+import { type CategoryContent } from '../mocks/products';
+import { Carousel } from '@ecommerce/ui';
+
+interface Props {
+  category: Category;
+  content: CategoryContent;
+  title?: string;
+}
+
+const { category, content, title = category.name } = Astro.props;
+
+const carouselItems = content.carouselItems.map(item => ({
+  id: item.title,
+  ...item
+}));
+---
+
+<Layout title={title} description={`Explora nuestra colección de ${category.name.toLowerCase()}`}>
+  <div class="container mx-auto px-4 py-8">
+    <section class="mb-12">
+      <div class="relative h-80 w-full overflow-hidden rounded-lg md:h-96">
+        <img
+          src={content.heroImage}
+          alt={`Categoría: ${category.name}`}
+          class="h-full w-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black/40 p-8 text-white">
+          <div class="flex h-full flex-col items-center justify-center text-center">
+            <h1 class="mb-4 text-4xl font-bold md:text-5xl">{content.title}</h1>
+            <p class="max-w-xl text-lg">{content.description}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <Carousel
+        items={carouselItems}
+        className="rounded-lg"
+        client:load
+      />
+    </section>
+
+    <section class="mb-8">
+      <h2 class="mb-6 text-center text-2xl font-bold text-gray-900 md:text-3xl">
+        Productos Destacados
+      </h2>
+      <slot name="featured-products" />
+    </section>
+
+    <section>
+      <h2 class="mb-6 text-center text-2xl font-bold text-gray-900 md:text-3xl">
+        Nuestra Colección
+      </h2>
+      <div class="mb-6 flex flex-col flex-wrap items-center justify-between gap-4 md:flex-row">
+        <div class="flex items-center space-x-2">
+          <span class="text-sm text-gray-500">Filtrar por:</span>
+          <select class="rounded-md border border-gray-300 px-3 py-1.5 text-sm">
+            <option>Todos</option>
+            <option>Novedades</option>
+            <option>Ofertas</option>
+          </select>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="text-sm text-gray-500">Ordenar por:</span>
+          <select class="rounded-md border border-gray-300 px-3 py-1.5 text-sm">
+            <option>Relevancia</option>
+            <option>Precio: Menor a Mayor</option>
+            <option>Precio: Mayor a Menor</option>
+            <option>Más Recientes</option>
+          </select>
+        </div>
+      </div>
+      <slot />
+    </section>
+  </div>
+</Layout> 

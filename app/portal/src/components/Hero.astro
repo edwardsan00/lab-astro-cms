@@ -1,0 +1,57 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  ctaText: string;
+  ctaLink: string;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
+  imageUrl: string;
+}
+
+const {
+  title,
+  subtitle,
+  ctaText,
+  ctaLink,
+  secondaryCtaText,
+  secondaryCtaLink,
+  imageUrl
+} = Astro.props;
+---
+
+<div class="relative bg-gray-900">
+  <div class="absolute inset-0">
+    <img
+      src={imageUrl}
+      alt="Hero background"
+      class="h-full w-full object-cover opacity-60"
+    />
+  </div>
+  <div class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+    <div class="max-w-2xl text-center sm:mx-auto">
+      <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+        {title}
+      </h1>
+      <p class="mt-6 text-xl text-gray-300">
+        {subtitle}
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <a
+          href={ctaLink}
+          class="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-6 py-3 text-base font-medium text-blue-600 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+        >
+          {ctaText}
+        </a>
+        {secondaryCtaText && secondaryCtaLink && (
+          <a
+            href={secondaryCtaLink}
+            class="inline-flex items-center justify-center rounded-md border border-white bg-transparent px-6 py-3 text-base font-medium text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900"
+          >
+            {secondaryCtaText}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</div> 

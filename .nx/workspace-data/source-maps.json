@@ -1,0 +1,318 @@
+{
+  "app/portal": {
+    "root": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "tags.npm:public": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.0": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.1": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageName": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.isInPackageManagerWorkspaces": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start.executor": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start.options": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start.metadata": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start.options.script": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start.metadata.scriptContent": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start.metadata.runCommand": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.astro": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.astro.executor": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.astro.options": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.astro.metadata": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.astro.options.script": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.astro.metadata.scriptContent": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.astro.metadata.runCommand": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.executor": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.dependsOn": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.options": [
+      "app/portal/package.json",
+      "nx/core/package-json"
+    ],
+    "sourceRoot": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "implicitDependencies": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "implicitDependencies.ui": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.executor": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.dependsOn": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.command": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.outputPath": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.executor": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.options": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.options.command": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview.executor": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview.options": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview.options.command": [
+      "app/portal/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "packages/ui": {
+    "root": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "tags.npm:public": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.description": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageName": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageExports": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageMain": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.isInPackageManagerWorkspaces": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "targets": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.executor": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.dependsOn": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.options": [
+      "packages/ui/package.json",
+      "nx/core/package-json"
+    ],
+    "sourceRoot": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.executor": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.command": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.outputPath": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.executor": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.options": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.options.command": [
+      "packages/ui/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  }
+}

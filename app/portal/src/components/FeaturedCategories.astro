@@ -1,0 +1,58 @@
+---
+import type { Category } from '../mocks/categories';
+
+interface Props {
+  categories: Category[];
+  title?: string;
+  subtitle?: string;
+}
+
+const { 
+  categories,
+  title = "Categorías Destacadas",
+  subtitle = "Explora nuestras colecciones"
+} = Astro.props;
+
+const featuredCategories = categories.filter(cat => cat.featured);
+---
+
+<section class="bg-white py-12 sm:py-16 lg:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{title}</h2>
+      <p class="mx-auto mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">{subtitle}</p>
+    </div>
+
+    <div class="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
+      {featuredCategories.map((category) => (
+        <div class="group flex flex-col overflow-hidden rounded-lg shadow-lg">
+          <div class="relative h-48 flex-shrink-0">
+            <img
+              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              src={category.imageUrl}
+              alt={category.name}
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div class="absolute bottom-0 w-full p-4">
+              <h3 class="text-xl font-semibold text-white">{category.name}</h3>
+            </div>
+          </div>
+          <div class="flex flex-1 flex-col justify-between bg-white p-6">
+            <div class="flex-1">
+              <p class="text-sm text-gray-500">{category.description}</p>
+            </div>
+            <div class="mt-6">
+              <a
+                href={`/${category.slug}`}
+                class="text-base font-semibold text-blue-600 hover:text-blue-500"
+              >
+                Explorar
+                <span aria-hidden="true"> &rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section> 

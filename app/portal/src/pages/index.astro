@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import FeaturedCategories from '../components/FeaturedCategories.astro';
+import FeaturedProducts from '../components/FeaturedProducts.astro';
+import { getCategories } from '../mocks/categories';
+import { getProducts } from '../mocks/products';
+
+const categories = getCategories().categories;
+const products = getProducts();
+---
+
+<Layout title="AstroShop - Tienda Online">
+	<Hero
+		title="Bienvenido a AstroShop"
+		subtitle="Descubre las últimas tendencias en moda para toda la familia"
+		ctaText="Ver Novedades"
+		ctaLink="/novedades"
+		secondaryCtaText="Ver Ofertas"
+		secondaryCtaLink="/ofertas"
+		imageUrl="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2000"
+	/>
+
+	<FeaturedCategories categories={categories} />
+
+	<FeaturedProducts products={products} />
+
+	<section class="bg-white py-12 sm:py-16 lg:py-20">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+				<div class="lg:pr-8 lg:pt-4">
+					<div class="lg:max-w-lg">
+						<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Calidad y Sostenibilidad</h2>
+						<p class="mt-6 text-lg leading-8 text-gray-600">
+							En AstroShop, creemos en la moda sostenible y de calidad. Todos nuestros productos están fabricados con materiales cuidadosamente seleccionados y procesos que respetan el medio ambiente.
+						</p>
+						<dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+							<div class="relative pl-9">
+								<dt class="inline font-semibold text-gray-900">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute left-1 top-1 h-5 w-5 text-blue-600">
+										<path fill-rule="evenodd" d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813A3.75 3.75 0 007.466 7.89l.813-2.846A.75.75 0 019 4.5zM18 1.5a.75.75 0 01.728.568l.258 1.036a2.63 2.63 0 001.78 1.78l1.036.258a.75.75 0 010 1.416l-1.036.258a2.63 2.63 0 00-1.78 1.78l-.258 1.036a.75.75 0 01-1.456 0l-.258-1.036a2.625 2.625 0 00-1.78-1.78l-1.036-.258a.75.75 0 010-1.416l1.036-.258a2.625 2.625 0 001.78-1.78l.258-1.036A.75.75 0 0118 1.5zM16.5 15a.75.75 0 01.712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 010 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 01-1.422 0l-.395-1.183a1.5 1.5 0 00-.948-.948l-1.183-.395a.75.75 0 010-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0116.5 15z" clip-rule="evenodd" />
+									</svg>
+									Materiales de calidad.
+								</dt>
+								<dd class="inline"> Seleccionamos cuidadosamente todos los materiales para asegurar la durabilidad y comodidad de nuestras prendas.</dd>
+							</div>
+							<div class="relative pl-9">
+								<dt class="inline font-semibold text-gray-900">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute left-1 top-1 h-5 w-5 text-blue-600">
+										<path fill-rule="evenodd" d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.177A7.547 7.547 0 016.648 6.61a.75.75 0 00-1.152.082A9 9 0 1015.68 4.534a7.46 7.46 0 01-2.717-2.248zM15.75 14.25a3.75 3.75 0 11-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 011.925-3.545 3.75 3.75 0 013.255 3.717z" clip-rule="evenodd" />
+									</svg>
+									Sostenibilidad.
+								</dt>
+								<dd class="inline"> Nos comprometemos con procesos de producción que minimicen el impacto ambiental.</dd>
+							</div>
+							<div class="relative pl-9">
+								<dt class="inline font-semibold text-gray-900">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute left-1 top-1 h-5 w-5 text-blue-600">
+										<path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z" />
+									</svg>
+									Producción ética.
+								</dt>
+								<dd class="inline"> Trabajamos con fabricantes que garantizan condiciones laborales justas y éticas.</dd>
+							</div>
+						</dl>
+					</div>
+				</div>
+				<img
+					src="https://images.unsplash.com/photo-1573612752860-24879c9c29b2?q=80&w=1000"
+					alt="Calidad y sostenibilidad"
+					class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+					width="2432"
+					height="1442"
+				/>
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-gray-900 py-16 sm:py-24">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="mx-auto grid max-w-2xl grid-cols-1 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+				<div class="flex flex-col pb-10 pt-6 sm:pb-16 lg:p-8 xl:p-10">
+					<img class="h-12 w-auto" src="https://tailwindui.com/img/logos/tuple-logo-white.svg" alt="Tuple" />
+					<figure class="mt-10 flex flex-auto flex-col justify-between">
+						<blockquote class="text-lg leading-8 text-white">
+							<p>"La calidad de las prendas es impresionante. Me encanta lo bien que lucen incluso después de varios lavados, y el servicio al cliente ha sido excepcional."</p>
+						</blockquote>
+						<figcaption class="mt-6 flex items-center gap-x-4">
+							<img class="h-10 w-10 rounded-full bg-gray-800" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150" alt="" />
+							<div>
+								<div class="font-semibold text-white">Marta Rodríguez</div>
+								<div class="text-gray-400">Cliente desde 2021</div>
+							</div>
+						</figcaption>
+					</figure>
+				</div>
+				<div class="flex flex-col border-t border-white/10 pb-10 pt-6 sm:pb-16 lg:border-l lg:border-t-0 lg:p-8 xl:p-10">
+					<img class="h-12 w-auto" src="https://tailwindui.com/img/logos/reform-logo-white.svg" alt="Reform" />
+					<figure class="mt-10 flex flex-auto flex-col justify-between">
+						<blockquote class="text-lg leading-8 text-white">
+							<p>"Encontré ropa con estilo a precios razonables. El proceso de compra fue sencillo y recibí mis pedidos antes de lo esperado. Definitivamente seguiré comprando aquí."</p>
+						</blockquote>
+						<figcaption class="mt-6 flex items-center gap-x-4">
+							<img class="h-10 w-10 rounded-full bg-gray-800" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150" alt="" />
+							<div>
+								<div class="font-semibold text-white">Carlos Mendoza</div>
+								<div class="text-gray-400">Cliente desde 2022</div>
+							</div>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

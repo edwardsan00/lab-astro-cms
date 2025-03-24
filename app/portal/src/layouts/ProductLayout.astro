@@ -1,0 +1,207 @@
+---
+import Layout from './Layout.astro';
+import { type Product } from '../mocks/products';
+import { type ProductContent } from '../mocks/products';
+import { Badge, Rating } from '@ecommerce/ui';
+
+interface Props {
+  product: Product;
+  content: ProductContent;
+  categoryName: string;
+}
+
+const { product, content, categoryName } = Astro.props;
+---
+
+<Layout 
+  title={product.name} 
+  description={product.description}
+>
+  <div class="container mx-auto px-4 py-8">
+    <div class="mb-4">
+      <nav class="flex" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-1 text-sm">
+          <li>
+            <a href="/" class="text-gray-500 hover:text-blue-600">Inicio</a>
+          </li>
+          <li class="flex items-center space-x-1">
+            <span class="text-gray-500">/</span>
+            <a href={`/${product.categorySlug}`} class="text-gray-500 hover:text-blue-600">
+              {categoryName}
+            </a>
+          </li>
+          <li class="flex items-center space-x-1">
+            <span class="text-gray-500">/</span>
+            <span class="font-medium text-gray-900" aria-current="page">
+              {product.name}
+            </span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <!-- Product Images -->
+      <div>
+        <div class="mb-4 rounded-lg">
+          <img
+            src={product.images[0]}
+            alt={product.name}
+            class="h-auto w-full rounded-lg object-cover"
+          />
+        </div>
+        <div class="grid grid-cols-4 gap-2">
+          {product.images.map((image, index) => (
+            <button class:list={["rounded-md border-2 transition-colors", index === 0 ? "border-blue-600" : "border-transparent hover:border-gray-300"]}>
+              <img
+                src={image}
+                alt={`${product.name} - Vista ${index + 1}`}
+                class="h-24 w-full rounded-md object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="flex flex-col">
+        <div class="mb-1 flex space-x-2">
+          {product.isNew && (
+            <Badge variant="info">Nuevo</Badge>
+          )}
+          {product.isSale && (
+            <Badge variant="danger">Oferta</Badge>
+          )}
+        </div>
+        <h1 class="mb-2 text-3xl font-bold text-gray-900">{product.name}</h1>
+        <div class="mb-4 flex items-center">
+          {product.rating !== undefined && (
+            <div class="flex items-center">
+              <Rating value={product.rating} client:load />
+              {product.reviewCount !== undefined && (
+                <span class="ml-2 text-sm text-gray-500">
+                  ({product.reviewCount} reseñas)
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div class="mb-6 flex items-end">
+          <p class="text-3xl font-bold text-gray-900">${product.price.toFixed(2)}</p>
+          {product.originalPrice && (
+            <p class="ml-2 text-xl text-gray-500 line-through">
+              ${product.originalPrice.toFixed(2)}
+            </p>
+          )}
+          {product.originalPrice && (
+            <span class="ml-3 rounded-md bg-green-100 px-2 py-1 text-sm font-medium text-green-800">
+              {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% descuento
+            </span>
+          )}
+        </div>
+
+        <div class="mb-6">
+          <p class="mb-2 text-gray-700">{product.description}</p>
+          <p class="text-gray-500">Stock: {product.stock > 10 ? 'Disponible' : product.stock > 0 ? `Solo quedan ${product.stock} unidades` : 'Agotado'}</p>
+        </div>
+
+        {product.colors && product.colors.length > 0 && (
+          <div class="mb-6">
+            <h3 class="mb-2 font-medium text-gray-900">Color</h3>
+            <div class="flex flex-wrap gap-2">
+              {product.colors.map((color) => (
+                <button
+                  class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-transparent hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  style={`background-color: ${color};`}
+                  aria-label={`Color: ${color}`}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {product.sizes && product.sizes.length > 0 && (
+          <div class="mb-6">
+            <h3 class="mb-2 font-medium text-gray-900">Talla</h3>
+            <div class="flex flex-wrap gap-2">
+              {product.sizes.map((size) => (
+                <button class="flex h-10 min-w-[2.5rem] items-center justify-center rounded-md border border-gray-300 px-3 hover:border-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div class="mt-2 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+          <button
+            class="flex-1 rounded-md bg-blue-600 px-6 py-3 text-center font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Añadir al carrito
+          </button>
+          <button
+            class="flex-1 rounded-md border border-gray-300 bg-white px-6 py-3 text-center font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            <span class="flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 h-5 w-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+              </svg>
+              Favoritos
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Details Tabs -->
+    <div class="mt-12">
+      <div class="border-b border-gray-200">
+        <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+          <button class="border-b-2 border-blue-600 py-4 text-sm font-medium text-blue-600">
+            Detalles
+          </button>
+          <button class="border-b-2 border-transparent py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+            Envío y Devoluciones
+          </button>
+          <button class="border-b-2 border-transparent py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+            Reseñas
+          </button>
+        </nav>
+      </div>
+      
+      <!-- Details Content -->
+      <div class="py-6">
+        <div class="grid grid-cols-1 gap-y-8 gap-x-6 md:grid-cols-2">
+          <div>
+            <h3 class="mb-4 text-lg font-bold text-gray-900">Características</h3>
+            <ul class="list-inside list-disc space-y-2 text-gray-700">
+              {content.details.features?.map((feature) => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 class="mb-4 text-lg font-bold text-gray-900">Material y Cuidados</h3>
+            <p class="mb-2 text-gray-700">{content.details.material}</p>
+            
+            <h4 class="mb-2 mt-4 font-medium text-gray-900">Instrucciones de cuidado:</h4>
+            <ul class="list-inside list-disc space-y-2 text-gray-700">
+              {content.details.careInstructions?.map((instruction) => (
+                <li>{instruction}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <section class="mt-12">
+      <h2 class="mb-6 text-center text-2xl font-bold text-gray-900">
+        Productos Relacionados
+      </h2>
+      <slot name="related-products" />
+    </section>
+  </div>
+</Layout> 
