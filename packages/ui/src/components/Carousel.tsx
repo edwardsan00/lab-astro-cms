@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export interface CarouselItem {
   id: string;
@@ -41,7 +41,7 @@ export function Carousel({
   };
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: Window.Timeout;
 
     if (isAutoPlaying) {
       interval = setInterval(goToNext, autoPlayInterval);
@@ -84,7 +84,7 @@ export function Carousel({
                           href={action.url}
                           className={`rounded-md px-6 py-2 font-medium transition-colors ${
                             action.variant === "primary"
-                              ? "bg-white text-black hover:bg-gray-100"
+                              ? "bg-blue-400 text-white hover:bg-blue-500"
                               : "border border-white text-white hover:bg-white/10"
                           }`}
                         >
