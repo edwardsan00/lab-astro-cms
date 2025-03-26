@@ -1,6 +1,7 @@
 # AstroShop E-commerce
 
 A modern e-commerce platform built with Astro, React, and TailwindCSS.
+URL(https://calm-tree-01d3e791e.6.azurestaticapps.net)
 
 ## Project Structure
 
