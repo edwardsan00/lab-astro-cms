@@ -8,14 +8,11 @@
     "packages/ui"
   ],
   "scripts": {
-    "build": "nx run-many --target=build",
-    "dev": "nx run portal:dev",
-    "test": "nx run-many --target=test"
+    "build": "pnpm -r build",
+    "dev": "pnpm --filter @ecommerce-astro/portal dev",
+    "test": "pnpm -r test"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "nx": "^17.0.0"
-  }
+  "license": "ISC"
 }

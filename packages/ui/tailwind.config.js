@@ -1,8 +1,19 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      transitionProperty: {
+        transform: "transform",
+      },
+      transitionDuration: {
+        500: "500ms",
+      },
+    },
   },
   plugins: [],
+  important: true,
+  corePlugins: {
+    preflight: false,
+  },
 };
