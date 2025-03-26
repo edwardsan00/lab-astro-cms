@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "tsup packages/ui/src/index.ts --format cjs,esm --dts --external react --external react-dom && npx @tailwindcss/cli -i ./packages/ui/src/styles.css -o ./packages/ui/dist/styles.css && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
