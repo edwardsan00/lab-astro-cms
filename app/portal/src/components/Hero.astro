@@ -20,7 +20,14 @@ const {
 } = Astro.props;
 ---
 
-<div class="relative bg-gray-900">
+<style is:inline>
+  .hero-image {
+    position: relative;
+    background-color: #676060;
+  }
+</style>
+
+<div class="hero-image">
   <div class="absolute inset-0">
     <img
       src={imageUrl}
